@@ -1,0 +1,35 @@
+.player {
+    outline: 2px solid blueviolet;
+    margin: 5px;
+    padding: 5px;
+    flex-grow: 1;
+    color: white;
+}
+
+.turn-points {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.turn {
+    padding: 5px;
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.new-score {
+    display: flex;
+        input {
+        flex-grow: 1;
+            width: 85%;
+            margin: 0 5px;
+            // flex-grow: 1;
+            // max-width: 100px;
+        }
+    button {
+        flex-grow: 1;
+    }
+}

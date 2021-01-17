@@ -10,7 +10,12 @@ export class GameService {
     protected readonly PLAYERS = 'players';
 
     constructor() {
-        this.initTwoPlayers();
+        const savedPlayers = localStorage.getItem(this.PLAYERS);
+        if (savedPlayers) {
+            this.players$.next(JSON.parse(savedPlayers));
+        } else {
+            this.initTwoPlayers();
+        }
     }
 
     private initTwoPlayers(): void {
@@ -31,6 +36,16 @@ export class GameService {
         }
     }
 
+    private updatePlayers$(players: Player[]): void {
+        this.players$.next(players);
+        this.savePlayersState();
+    }
+
+    private savePlayersState(): void {
+        localStorage.setItem(this.PLAYERS, JSON.stringify(this.players$.getValue()));
+    }
+
+
     undo(): void {
         const players = this.players$.getValue();
         if (players.flatMap(p => p.turns).length > 0) {
@@ -41,10 +56,20 @@ export class GameService {
                     const p = players[idx];
                     p.isTurn = true;
                     p.turns.pop();
+                    this.updatePlayers$(players)
                     break;
                 }
             }
-            this.players$.next(players);
+        }
+    }
+
+    addTurn(player: Player, points: string) {
+        const np = this.players$.getValue().find(p => p === player);
+        if (np) {
+            const p = parseInt(points);
+            const total = np.turns.length ? np.turns[np.turns.length - 1].total + p : p;
+            np.turns.push({points: p, total: total});
+            this.updatePlayers$(this.players$.getValue());
         }
     }
 
@@ -55,23 +80,16 @@ export class GameService {
                 player.isTurn = false;
                 const idx = i === players.length - 1 ? 0 : i + 1;
                 players[idx].isTurn = true;
-                this.players$.next(players);
+                this.updatePlayers$(players);
                 break;
-                // if (i === players.length - 1) {
-                //     players[0].isTurn = true;
-                // } else {
-                //     players[i + 1].isTurn = true;
-                // }
             }
         }
     }
 
-    private savePlayersState(): void {
-        localStorage.setItem(this.PLAYERS, JSON.stringify(this.players$.getValue()));
-    }
-
     resetGame() {
         localStorage.removeItem(this.PLAYERS);
+        this.players$.next([]);
+        this.initTwoPlayers();
     }
 
 }

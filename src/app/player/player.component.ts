@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {GameService} from '../game.service';
 import {Player} from '../models/Player';
 
 @Component({
@@ -9,18 +10,17 @@ import {Player} from '../models/Player';
 export class PlayerComponent implements OnInit {
     @Input() player!: Player;
 
-    constructor() {}
+    constructor(private gameService: GameService) {}
 
     ngOnInit(): void {
+        console.log(this.player);
     }
 
-    addTurn(points: string): void {
-        const p = parseInt(points);
-        const total = this.player.turns.length ? this.player.turns[this.player.turns.length - 1].total + p : p;
-        this.player.turns.push({ points: p, total: total });
-    }
-
-    doTurn(player: Player, points: string) {
+    doTurn(points: string) {
+        if (points) {
+            this.gameService.addTurn(this.player, points);
+            this.gameService.nextTurn(this.player);
+        }
     }
 
 }

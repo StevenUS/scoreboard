@@ -1,17 +1,19 @@
-<div>{{player.name}}</div>
-<div class="turn" *ngFor="let turn of player.turns">
-    <div class="turn-points">
-    <span *ngIf="turn.points > 0">+</span>
-        {{turn.points}}
+<div class="player">
+    <div>{{player.name}}</div>
+    <div class="turn" *ngFor="let turn of player.turns">
+        <div class="turn-points">
+            <span *ngIf="turn.points > 0">+</span>
+            {{turn.points}}
+        </div>
+        <div class="turn-total">
+            {{turn.total}}
+        </div>
     </div>
-    <div class="turn-total">
-        {{turn.total}}
-    </div>
-</div>
-<div class="new-score">
+    <div class="new-score">
         <input #points type="number" [disabled]="!player.isTurn">
-    <button
-        [disabled]="!player.isTurn"
-        (click)="doTurn(player, points.value); points.value = '';">+</button>
+        <button
+            [disabled]="!player.isTurn"
+            (click)="doTurn(points.value); points.value = '';">+</button>
+    </div>
 </div>
 
