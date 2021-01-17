@@ -9,11 +9,12 @@
             {{turn.total}}
         </div>
     </div>
-    <div class="new-score">
-        <input #points type="number" [disabled]="!player.isTurn">
-        <button
-            [disabled]="!player.isTurn"
-            (click)="doTurn(points.value); points.value = '';">+</button>
-    </div>
+    <app-add-score [isTurn]="player.isTurn"></app-add-score>
+    <!-- <div class="new&#45;score"> -->
+    <!--     <input #points type="number" [disabled]="!player.isTurn"> -->
+    <!--     <button -->
+    <!--         [disabled]="!player.isTurn" -->
+    <!--         (click)="doTurn(points.value); points.value = '';">+</button> -->
+    <!-- </div> -->
 </div>
 

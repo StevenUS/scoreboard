@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameService} from '../game.service';
 import {Player} from '../models/Player';
 
 @Component({
@@ -10,17 +9,10 @@ import {Player} from '../models/Player';
 export class PlayerComponent implements OnInit {
     @Input() player!: Player;
 
-    constructor(private gameService: GameService) {}
+    constructor() {}
 
     ngOnInit(): void {
         console.log(this.player);
-    }
-
-    doTurn(points: string) {
-        if (points) {
-            this.gameService.addTurn(this.player, points);
-            this.gameService.nextTurn(this.player);
-        }
     }
 
 }

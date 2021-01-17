@@ -1,0 +1,13 @@
+form {
+    display: flex;
+        input {
+            flex-grow: 1;
+            width: 85%;
+            margin: 0 5px;
+            background: transparent;
+            color: white;
+        }
+    button {
+        flex-grow: 1;
+    }
+}

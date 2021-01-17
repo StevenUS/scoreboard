@@ -20,16 +20,3 @@
     text-align: center;
 }
 
-.new-score {
-    display: flex;
-        input {
-        flex-grow: 1;
-            width: 85%;
-            margin: 0 5px;
-            // flex-grow: 1;
-            // max-width: 100px;
-        }
-    button {
-        flex-grow: 1;
-    }
-}
