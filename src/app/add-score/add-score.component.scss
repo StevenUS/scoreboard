@@ -1,8 +1,12 @@
 form {
+    position: absolute;
+    bottom: 5px;
     display: flex;
+    height: 40px;
         input {
+            border-radius: 5px;
             flex-grow: 1;
-            width: 85%;
+            width: 50%;
             margin: 0 5px;
             background: transparent;
             color: white;

@@ -13,6 +13,7 @@ button {
 
 .turns {
     // max-width: 500px;
+    margin-bottom: 10px;
     height: 100%;
     outline: 2px solid white;
     padding: 2px;
@@ -20,4 +21,8 @@ button {
     flex-direction: row;
 }
 
+app-player {
+    display: flex;
+    flex-grow: 1;
+}
 

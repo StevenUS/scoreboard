@@ -9,6 +9,10 @@
             {{turn.total}}
         </div>
     </div>
+
+    <!-- space when empty to position absolute score component -->
+    <div *ngIf="player.turns.length <= 0" style="height: 50px; width: 100%; clear:both;"></div>
+
     <app-add-score [isTurn]="player.isTurn"></app-add-score>
 </div>
 
