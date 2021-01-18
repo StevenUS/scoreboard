@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {GameService} from '../game.service';
 
 @Component({
@@ -6,12 +6,22 @@ import {GameService} from '../game.service';
     templateUrl: './add-score.component.html',
     styleUrls: ['./add-score.component.scss']
 })
-export class AddScoreComponent implements OnInit {
+export class AddScoreComponent implements OnInit, OnChanges {
     @Input() isTurn!: boolean;
+    @ViewChild('points') points: any;
 
     constructor(private gameService: GameService) {}
 
     ngOnInit(): void {
+    }
+
+    ngOnChanges(_changes: SimpleChanges) {
+        if (this.isTurn && this.points) {
+            setTimeout(() => {
+                this.points.nativeElement.focus();
+                this.points.nativeElement.select();
+            })
+        }
     }
 
     doTurn(points: string, e$: Event) {
