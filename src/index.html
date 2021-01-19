@@ -5,6 +5,7 @@
         <title>ScrabbleScore</title>
         <base href="/">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style>
             html {
               box-sizing: border-box;
@@ -16,7 +17,9 @@
             body {
                 background-color: #242424;
                 font-family: monospace;
-                font-size: 16px;
+                font-size: 24px;
+                color: white;
+                touch-action: none; /* no zoom on double tap */
             }
             /* don't zoom on safari mobile */
             input[type="number"] {
@@ -27,6 +30,7 @@
                 border-radius: 5px;
                 background: transparent;
                 color: #e69900;
+                font-size: 20px;
             }
             button:disabled {
                 border: 0;

@@ -5,12 +5,14 @@ import {AppComponent} from './app.component';
 import {PlayerComponent} from './player/player.component';
 import {AddScoreComponent} from './add-score/add-score.component';
 import {FormsModule} from '@angular/forms';
+import { NumPadComponent } from './num-pad/num-pad.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         PlayerComponent,
-        AddScoreComponent
+        AddScoreComponent,
+        NumPadComponent
     ],
     imports: [
         BrowserModule,

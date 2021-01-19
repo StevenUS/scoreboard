@@ -1,0 +1,22 @@
+:host {
+    margin: 0 10px;
+}
+.scratch-pad {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    overflow-x: scroll;
+    div {
+        display: inline-block;
+    }
+}
+div {
+    display: flex;
+}
+
+button {
+    height: 65px;
+    border-radius: 50px;
+    flex-grow: 1;
+    margin: 5px 5px;
+}
