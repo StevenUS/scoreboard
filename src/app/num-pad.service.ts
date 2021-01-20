@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {GameService} from './game.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NumPadService {
     scratch: number[] = [];
-    submit$ = new BehaviorSubject<number>(0);
 
-  constructor() {
+  constructor(private gameService: GameService) {
       this.scratch.push(0);
   }
 
@@ -24,15 +23,8 @@ export class NumPadService {
         this.scratch.push(0);
     }
 
-    undo() {
-        this.scratch.pop();
-        if (this.scratch.length === 0) {
-            this.scratch.push(0);
-        }
-    }
-
     submit() {
-        this.submit$.next(parseFloat(this.scratch.join('')));
+        this.gameService.doTurn(this.scratch.join(''));
         this.clear();
     }
 

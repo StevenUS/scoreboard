@@ -63,24 +63,21 @@ export class GameService {
         }
     }
 
-    addTurn(points: string) {
-        const currentPlayer = this.players$.getValue().find(p => p.isTurn);
-        if (currentPlayer) {
-            const p = parseInt(points);
-            const total = currentPlayer.turns.length ?
-                currentPlayer.turns[currentPlayer.turns.length - 1].total + p : p;
-            currentPlayer.turns.push({points: p, total: total});
-            this.updatePlayers$(this.players$.getValue());
-        }
-    }
-
-    nextTurn(): void {
+    doTurn(points: string): void {
         const players = this.players$.getValue();
         for (let i = 0; i < players.length; i++) {
             if (players[i].isTurn) {
+
+                // add points
+                const p = parseInt(points);
+                const total = players[i].turns.length ?
+                    players[i].turns[players[i].turns.length - 1].total + p : p;
+                players[i].turns.push({points: p, total: total});
+
+                // next turn
                 players[i].isTurn = false;
-                const idx = i === players.length - 1 ? 0 : i + 1;
-                players[idx].isTurn = true;
+                const nextIdx = i === players.length - 1 ? 0 : i + 1;
+                players[nextIdx].isTurn = true;
                 this.updatePlayers$(players);
                 break;
             }
