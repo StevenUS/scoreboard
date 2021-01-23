@@ -1,7 +1,7 @@
 export class Player {
     name: string;
     isTurn: boolean;
-    turns: { points: number; total: number; }[];
+    turns: { points: number; total: number; high?: boolean}[];
 
     constructor(name: string) {
         this.name = name;

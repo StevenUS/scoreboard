@@ -63,6 +63,10 @@ export class GameService {
         }
     }
 
+    private isHighest(turns: any, points: number) {
+        return Math.max(...turns.map((t: any) => t.points)) <= points;
+    }
+
     doTurn(points: string): void {
         const players = this.players$.getValue();
         for (let i = 0; i < players.length; i++) {
@@ -72,8 +76,11 @@ export class GameService {
                 const p = parseInt(points);
                 const total = players[i].turns.length ?
                     players[i].turns[players[i].turns.length - 1].total + p : p;
-                players[i].turns.push({points: p, total: total});
-
+                const isHighest = this.isHighest(players[i].turns, p);
+                if (isHighest) {
+                    players[i].turns.forEach(t => t.high = false);
+                }
+                players[i].turns.push({points: p, total: total, high: isHighest});
                 // next turn
                 players[i].isTurn = false;
                 const nextIdx = i === players.length - 1 ? 0 : i + 1;
