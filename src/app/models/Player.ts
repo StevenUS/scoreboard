@@ -16,10 +16,4 @@ export class Player {
         return newPlayer;
     }
 
-    addTurn(points: string): void {
-        const p = parseInt(points);
-        const total = this.turns.length ? this.turns[this.turns.length - 1].total + p : p;
-        this.turns.push({ points: p, total: total });
-    }
-
 }

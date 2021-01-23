@@ -1,4 +1,4 @@
-<div class="player">
+<div class="player" [ngClass]="{'current-player': player.isTurn}">
     <div>{{player.name}}</div>
     <div class="turn" *ngFor="let turn of player.turns">
         <div class="turn-points">
