@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'variables';
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* 16 px font size so safari mobile does not zoom while selecting input */
+body {
+    background-color: $bg_h;
+    font-family: monospace;
+    font-size: 18px;
+    touch-action: manipulation; /* no zoom on double tap */
+}
+/* don't zoom on safari mobile */
+input[type="number"] {
+        font-size: inherit;
+}
+button {
+    border: 2px solid $blue-dim;
+    border-radius: 5px;
+    background: $bg;
+    color: $blue;
+    font-size: 20px;
+}
+button:disabled {
+    border: 0;
+    background: transparent;
+    color: transparent;
+}
