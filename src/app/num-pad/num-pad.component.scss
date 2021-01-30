@@ -1,5 +1,8 @@
 :host {
     margin: 0 10px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
 }
 .scratch-pad {
     width: 100%;
@@ -17,7 +20,7 @@ div {
 }
 
 button {
-    height: 50px;
+    height: 65px;
     flex-grow: 1;
-    margin: 5px 5px;
+    margin: 2px 2px;
 }
