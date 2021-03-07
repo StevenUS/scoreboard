@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {GameService} from './game.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class NumPadService {
     scratch: number[] = [];
 
-  constructor(private gameService: GameService) {
-      this.scratch.push(0);
-  }
+    constructor(private gameService: GameService) {
+        this.scratch.push(0);
+    }
 
     add(num: number): void {
         if (this.scratch.length === 1 && this.scratch[0] === 0) {
