@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {NumPadService} from '../num-pad.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {NumPadService} from '../num-pad.service';
     templateUrl: './num-pad.component.html',
     styleUrls: ['./num-pad.component.scss']
 })
-export class NumPadComponent implements OnInit, AfterViewInit {
+export class NumPadComponent {
     @ViewChild('numpad') numPad!: ElementRef;
     scratch: number[];
 
@@ -29,27 +29,30 @@ export class NumPadComponent implements OnInit, AfterViewInit {
         this.scratch = this.scorePadService.scratch;
     }
 
-    ngAfterViewInit(): void {
+    private unFocus(t: EventTarget | null): void {
+        if (t) {
+            (t as HTMLInputElement).blur();
+        }
     }
 
-    ngOnInit(): void {
-    }
-
-    press(val: number) {
+    press(val: number, t: EventTarget | null): void {
+        this.unFocus(t);
         this.scorePadService.add(val);
     }
 
-    clear(): void {
+    clear(t: EventTarget | null): void {
+        this.unFocus(t);
         this.scorePadService.clear();
     }
 
-    private ds(): void {
+    private numpadIntoView(): void {
         this.numPad.nativeElement.scrollIntoView()
     }
 
-    enter() {
+    enter(t: EventTarget | null): void {
+        this.unFocus(t);
         this.scorePadService.submit();
-        setTimeout(this.ds.bind(this));
+        setTimeout(this.numpadIntoView.bind(this));
     }
 
     @HostListener('window:keydown', ['$event'])
@@ -57,15 +60,16 @@ export class NumPadComponent implements OnInit, AfterViewInit {
         const keyValue = this.keys[event.code];
         switch (keyValue) {
             case (11):
-                this.clear();
+                this.clear(null);
                 break;
             case (10):
-                this.enter();
+                this.enter(null);
                 break;
             default:
-                this.press(keyValue)
+                this.press(keyValue, null)
                 break;
         }
     }
 
 }
+

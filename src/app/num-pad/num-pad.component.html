@@ -5,22 +5,23 @@
 </div>
 
 <div>
-    <button (click)="press(7)">7</button>
-    <button (click)="press(8)">8</button>
-    <button (click)="press(9)">9</button>
+    <button (click)="press(7, $event.target)">7</button>
+    <button (click)="press(8, $event.target)">8</button>
+    <button (click)="press(9, $event.target)">9</button>
 </div>
 <div>
-    <button (click)="press(4)">4</button>
-    <button (click)="press(5)">5</button>
-    <button (click)="press(6)">6</button>
+    <button (click)="press(4, $event.target)">4</button>
+    <button (click)="press(5, $event.target)">5</button>
+    <button (click)="press(6, $event.target)">6</button>
 </div>
 <div>
-    <button (click)="press(1)">1</button>
-    <button (click)="press(2)">2</button>
-    <button (click)="press(3)">3</button>
+    <button (click)="press(1, $event.target)">1</button>
+    <button (click)="press(2, $event.target)">2</button>
+    <button (click)="press(3, $event.target)">3</button>
 </div>
 <div>
-    <button (click)=clear()>C</button>
-    <button (click)="press(0)">0</button>
-    <button (click)="enter()">&#8629;</button>
+    <button (click)=clear($event.target)>C</button>
+    <button (click)="press(0, $event.target)">0</button>
+    <button (click)="enter($event.target)">&#8629;</button>
 </div>
+
